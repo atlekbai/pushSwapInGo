@@ -1,13 +1,13 @@
-package main
+package node
 
 /*
 ** Node Used for List Data Structure
-*/
+ */
 type Node struct {
-	Number	int
-	Next	*node
+	Number int
+	Next   *Node
 }
 
-func createNode(int number) *Node {
+func CreateNode(number int) *Node {
 	return &Node{number, nil}
 }

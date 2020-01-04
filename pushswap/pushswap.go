@@ -2,26 +2,35 @@
 * @Author: Tlekbai Ali
 * @Date:   2020-01-04 12:44:51
 * @Last Modified by:   Tlekbai Ali
-* @Last Modified time: 2020-01-04 13:34:31
-*/
+* @Last Modified time: 2020-01-04 16:28:11
+ */
 
-package main
+package pushswap
+
+import (
+	"fmt"
+	node "../node"
+	stack "../stack"
+)
+
+type Node = node.Node
+type Stack = stack.Stack
 
 /*
 ** Push Swap Data Structure for subject
-*/
+ */
 type PushSwap struct {
-	A, B	*Stack
-	Array	[]int
-	Length	int
-	Ops		int
-	Print	int
+	A, B   *Stack
+	Array  []int
+	Length int
+	Ops    int
+	Print  int
 }
 
 /*
 ** Initialization of PushSwap Data Structure
 ** Main Job: to push back numbers from PushSwap.Array to Stack PushSwap.A
-*/
+ */
 func (p *PushSwap) Init(length int) {
 	p.Length = length
 	p.Ops = 0
@@ -33,8 +42,8 @@ func (p *PushSwap) Init(length int) {
 
 /*
 ** Prints Push Swap's Stack A, B and ops
-*/
-func (p PushSwap) Print() {
+ */
+func (p PushSwap) PrintInner() {
 	fmt.Print("Stack A: ")
 	for tmpNode := p.A.List; tmpNode != nil; tmpNode = tmpNode.Next {
 		fmt.Printf("%d ", tmpNode.Number)
@@ -46,6 +55,25 @@ func (p PushSwap) Print() {
 	fmt.Printf("\nops: %d\n", p.Ops)
 }
 
+/*
+** Old Name: true_sorted
+** Function checks whether stack A has the same order as PushSwap.Array
+ */
+func (p *PushSwap) SyncedWithArray() bool {
+	i := 0
+
+	for p.Array[i] != p.A.List.Number {
+		i++
+	}
+	for tmpNode := p.A.List; tmpNode != nil; tmpNode = tmpNode.Next {
+		if tmpNode.Number != p.Array[i] {
+			return false
+		}
+		i++
+	}
+	return true
+}
+
 /*               Operations               */
 
 /*             Swap Operations            */
@@ -53,7 +81,7 @@ func (p PushSwap) Print() {
 /*
 ** Function swaps first two numbers of given a stack
 ** If swap cannot be done returns false
-*/
+ */
 func SwapStack(stack *Stack) bool {
 	var tmpNode *Node
 
@@ -70,11 +98,9 @@ func SwapStack(stack *Stack) bool {
 
 /*
 ** Swap A Stack
-*/
+ */
 func (p *PushSwap) SwapA() {
-	if SwapStack(p.A) == false {
-		return
-	}
+	SwapStack(p.A)
 	if p.Print == 1 {
 		fmt.Println("sa")
 	}
@@ -83,11 +109,9 @@ func (p *PushSwap) SwapA() {
 
 /*
 ** Swap B Stack
-*/
+ */
 func (p *PushSwap) SwapB() {
-	if SwapStack(p.B) == false {
-		return
-	}
+	SwapStack(p.B)
 	if p.Print == 1 {
 		fmt.Println("sb")
 	}
@@ -96,7 +120,7 @@ func (p *PushSwap) SwapB() {
 
 /*
 ** Swap both A and B Stacks
-*/
+ */
 func (p *PushSwap) SwapAB() {
 	SwapStack(p.A)
 	SwapStack(p.B)
@@ -111,7 +135,7 @@ func (p *PushSwap) SwapAB() {
 /*
 ** Push A
 ** Will not push if Stack B is empty
-*/
+ */
 func (p *PushSwap) PushA() {
 	if p.Print == 1 {
 		fmt.Println("pa")
@@ -126,7 +150,7 @@ func (p *PushSwap) PushA() {
 /*
 ** Push B
 ** Will not push if Stack A is empty
-*/
+ */
 func (p *PushSwap) PushB() {
 	if p.Print == 1 {
 		fmt.Println("pb")
@@ -146,7 +170,7 @@ func (p *PushSwap) PushB() {
 ** 0 1 2 3 4 5 6 - stack
 ** After RotateStack:
 ** 1 2 3 4 5 6 0
-*/
+ */
 func RotateStack(stack *Stack) bool {
 	var tmpNode, head *Node
 
@@ -165,11 +189,9 @@ func RotateStack(stack *Stack) bool {
 
 /*
 ** Rotate A
-*/
+ */
 func (p *PushSwap) RotateA() {
-	if RotateStack(p.A) == false {
-		return
-	}
+	RotateStack(p.A)
 	if p.Print == 1 {
 		fmt.Println("ra")
 	}
@@ -178,11 +200,9 @@ func (p *PushSwap) RotateA() {
 
 /*
 ** Rotate A
-*/
+ */
 func (p *PushSwap) RotateB() {
-	if RotateStack(p.B) == false {
-		return
-	}
+	RotateStack(p.B)
 	if p.Print == 1 {
 		fmt.Println("rb")
 	}
@@ -191,7 +211,7 @@ func (p *PushSwap) RotateB() {
 
 /*
 ** Rotate A and B
-*/
+ */
 func (p *PushSwap) RotateAB() {
 	RotateStack(p.A)
 	RotateStack(p.B)
@@ -209,7 +229,7 @@ func (p *PushSwap) RotateAB() {
 ** 0 1 2 3 4 5 6 - stack
 ** After RevRotateStack:
 ** 6 0 1 2 3 4 5
-*/
+ */
 func RevRotateStack(stack *Stack) bool {
 	var tmpNode, penultimate, tail *Node
 
@@ -231,11 +251,9 @@ func RevRotateStack(stack *Stack) bool {
 
 /*
 ** Rev Rotate A
-*/
+ */
 func (p *PushSwap) RevRotateA() {
-	if RevRotateStack(p.A) == false {
-		return
-	}
+	RevRotateStack(p.A)
 	if p.Print == 1 {
 		fmt.Println("rra")
 	}
@@ -244,11 +262,9 @@ func (p *PushSwap) RevRotateA() {
 
 /*
 ** Rev Rotate A
-*/
+ */
 func (p *PushSwap) RevRotateB() {
-	if RevRotateStack(p.B) == false {
-		return
-	}
+	RevRotateStack(p.B)
 	if p.Print == 1 {
 		fmt.Println("rrb")
 	}
@@ -257,7 +273,7 @@ func (p *PushSwap) RevRotateB() {
 
 /*
 ** Rev Rotate A and B
-*/
+ */
 func (p *PushSwap) RevRotateAB() {
 	RevRotateStack(p.A)
 	RevRotateStack(p.B)
