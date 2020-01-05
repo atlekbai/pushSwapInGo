@@ -16,7 +16,10 @@ import (
 	tools "../tools"
 )
 
+// Stack alias
 type Stack = stack.Stack
+
+// PushSwap alias
 type PushSwap = pushswap.PushSwap
 
 func sortSecondStack(PS *PushSwap, size int) int {
