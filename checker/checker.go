@@ -75,11 +75,11 @@ func main() {
 	}
 	reader := bufio.NewReader(os.Stdin)
 	for {
-		line, err := reader.ReadString('\n')
+		line, _, err := reader.ReadLine()
 		if err != nil {
 			break
 		}
-		command(&PS, line)
+		command(&PS, string(line))
 	}
 	if PS.A.IsSorted(len(numbers)) && PS.B.Length == 0 {
 		fmt.Println("OK")
