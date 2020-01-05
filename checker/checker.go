@@ -69,7 +69,7 @@ func main() {
 		PS.Array = append(PS.Array, tmpNum)
 	}
 	PS.Init(len(numbers))
-	tools.Qsort(PS.Array, 0, len(numbers)-1)
+	tools.Qsort(PS.Array)
 	if tools.CheckDuplicates(PS.Array) == false {
 		tools.Exit()
 	}

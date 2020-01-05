@@ -156,7 +156,7 @@ func main() {
 	}
 	PS.Init(len(numbers))
 	PS.Print = 1
-	tools.Qsort(PS.Array, 0, len(numbers)-1)
+	tools.Qsort(PS.Array)
 	if tools.CheckDuplicates(PS.Array) == false {
 		tools.Exit()
 	}

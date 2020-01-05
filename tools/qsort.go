@@ -7,28 +7,29 @@
 
 package tools
 
-func partition(array []int, low, high int) int {
-	pivot := array[low]
-	j := low
-	i := low + 1
-	for i <= high {
-		if array[i] <= pivot {
-			j++
-			array[i], array[j] = array[j], array[i]
-		}
-		i++
-	}
-	array[low], array[j] = array[j], array[low]
-	return j
-}
-
 // Qsort algorithm implementation
-func Qsort(array []int, low, high int) {
-	if low >= high {
-		return
+func Qsort(a []int) []int {
+	if len(a) < 2 {
+		return a
 	}
 
-	mid := partition(array, low, high)
-	Qsort(array, low, mid-1)
-	Qsort(array, mid+1, high)
+	left, right := 0, len(a)-1
+
+	pivot := left + (right-left)/2
+
+	a[pivot], a[right] = a[right], a[pivot]
+
+	for i := range a {
+		if a[i] < a[right] {
+			a[left], a[i] = a[i], a[left]
+			left++
+		}
+	}
+
+	a[left], a[right] = a[right], a[left]
+
+	Qsort(a[:left])
+	Qsort(a[left+1:])
+
+	return a
 }

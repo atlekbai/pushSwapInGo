@@ -37,21 +37,20 @@ func (s *Stack) PushBack(number int) {
 	tmpNode.Next = newNode
 }
 
-// Pop function removes first element from its stack.
+// Pop function removes first element from its stack
+// and returns number of popped Node.
 // GoLang has Garbage Collector, no need for freeing memory
 func (s *Stack) Pop() *int {
-	var tmpNode *Node
-	var number *int
+	var number int
 
 	if s.Length == 0 {
 		return nil
 	}
-	tmpNode = s.List.Next
-	*number = tmpNode.Number
+	number = s.List.Number
 
-	s.List = tmpNode
+	s.List = s.List.Next
 	s.Length--
-	return number
+	return &number
 }
 
 // IsSorted checks whether stack is sorted in given window size
@@ -217,6 +216,6 @@ func (s Stack) Median(size int) int {
 	for tmpNode := s.List; tmpNode != nil && i < size; tmpNode, i = tmpNode.Next, i+1 {
 		array = append(array, tmpNode.Number)
 	}
-	tools.Qsort(array, 0, s.Length)
-	return array[(i-1)/2]
+	tools.Qsort(array)
+	return array[size/2-1]
 }
