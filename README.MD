@@ -16,13 +16,13 @@ Student should implement two programs:
 Firstly, build push_swap program.
 
 ```bash
-$> cd push_swap && go build . && mv push_swap ../ && cd ../
+$> cd push_swap && go build .
 ```
 
 Build checker program.
 
 ```bash
-$> cd checker && go build . && mv checker ../ && cd ../
+$> cd ../checker && go build . && mv checker ../push_swap && cd ../push_swap
 ```
 
 Execution
