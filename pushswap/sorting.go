@@ -3,7 +3,7 @@
 * @Date:   2020-01-04 14:43:58
 * @Last Modified by:   Tlekbai Ali
 * @Last Modified time: 2020-01-04 16:28:40
-*/
+ */
 
 package pushswap
 
@@ -11,33 +11,27 @@ import (
 	tools "../tools"
 )
 
-/*
-** Function sorts first two numbers of stack A
- */
+// SortFirstTwoA sorts first two numbers of stack A
 func (p *PushSwap) SortFirstTwoA() {
 	if p.A.Length < 2 {
-		return 
+		return
 	}
 	if p.A.List.Number > p.A.List.Next.Number {
 		p.SwapA()
 	}
 }
 
-/*
-** Function sorts first two numbers of stack B
- */
+// SortFirstTwoB sorts first two numbers of stack B
 func (p *PushSwap) SortFirstTwoB() {
 	if p.B.Length < 2 {
-		return 
+		return
 	}
 	if p.B.List.Number < p.B.List.Next.Number {
 		p.SwapB()
 	}
 }
 
-/*
-** Function sorts first two numbers of stacks A and B
- */
+// SortFirstTwoAB sorts first two numbers of stacks A and B
 func (p *PushSwap) SortFirstTwoAB() {
 	ARevSorted := p.A.IsRevSorted(2)
 	BSorted := p.B.IsSorted(2)
@@ -50,9 +44,7 @@ func (p *PushSwap) SortFirstTwoAB() {
 	}
 }
 
-/*
-** Function sorts first three numbers of stack A
- */
+// SortFirstThreeA sorts first three numbers of stack A
 func (p *PushSwap) SortFirstThreeA() {
 	var a, b, c, max int
 
@@ -90,12 +82,10 @@ func (p *PushSwap) SortFirstThreeA() {
 	}
 }
 
-/*
-** Function sorts first three numbers of stack B
- */
+// SortFirstThreeB sorts first three numbers of stack B
 func (p *PushSwap) SortFirstThreeB() {
 	var a, b, c, min, max int
-	
+
 	if p.B.Length < 3 || p.B.IsRevSorted(3) {
 		return
 	}

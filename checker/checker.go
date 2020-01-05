@@ -3,7 +3,7 @@
 * @Date:   2020-01-04 16:04:30
 * @Last Modified by:   Tlekbai Ali
 * @Last Modified time: 2020-01-04 16:29:52
-*/
+ */
 
 /*
 ** Disclaimer:
@@ -12,15 +12,17 @@
 package main
 
 import (
-	"os"
-	"fmt"
 	"bufio"
+	"fmt"
+	"os"
 	"strconv" // NOW ALLOWED
 	"strings" // NOW ALLOWED
-	tools "../tools"
+
 	pushswap "../pushswap"
+	tools "../tools"
 )
 
+// PushSwap alias
 type PushSwap = pushswap.PushSwap
 
 func command(PS *PushSwap, line string) {
