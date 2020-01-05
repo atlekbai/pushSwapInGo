@@ -27,6 +27,13 @@ $> cd checker
 $> go build . && mv checker ../ && cd ../
 ```
 
+Execution
+
+```bash
+$> ARG="4 67 3 89"; ./push_swap $ARG | ./checker $ARG
+OK
+```
+
 ## Project Structure
 
 There are 6 different directories in current project:
